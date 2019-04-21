@@ -1,5 +1,6 @@
 import requests as rq
 from retrying import retry
+# 禁用安全请求警告
 
 get_timeout = 5
 retry_max_number = 10
