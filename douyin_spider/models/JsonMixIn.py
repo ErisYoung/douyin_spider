@@ -14,6 +14,7 @@ class ToJsonMixIn(object):
                 dict_attrs[k]=str(v)
             if isinstance(v,str):
                 dict_attrs[k]=v
+            dict_attrs[k]=v
 
         return dict_attrs
 

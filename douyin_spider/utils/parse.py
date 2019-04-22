@@ -1,6 +1,7 @@
 from douyin_spider.utils.common import parse_datetime,get_array_first
 from douyin_spider.models.video import Video
 from douyin_spider.models.music import Music
+from douyin_spider.models.user import User
 
 def get_video_url(video_list):
     if video_list and isinstance(video_list,list) and len(video_list)>1:
@@ -11,6 +12,12 @@ def get_music_url(music_list):
     if music_list and isinstance(music_list,list) and len(music_list)>1:
         return music_list[-1]
     return None
+
+def parse_gender(gender_codeName_str):
+    dict_gender_mapping={'0':'male','1':'female','2':"unknown"}
+    if isinstance(gender_codeName_str,str):
+        return dict_gender_mapping[gender_codeName_str]
+
 
 def download_video_test(url):
     import requests
@@ -69,14 +76,42 @@ def parse_to_video(data):
         return None
 
 def parse_to_user(author_json):
-    pass
+    id=author_json.get('mid')
+    avatar_url=get_array_first(author_json.get('avatar_larger',{}).get('url_list'))
+    is_verified=author_json.get('is_verified')
+    verify_info=author_json.get('custom_verify')
+    is_hide_search=author_json.get('hide_search')
+    nikename=author_json.get('nickname')
+    region=author_json.get('CN')
+    signature=author_json.get('signature')
+    gender=parse_gender(author_json.get('gender'))
+    birthday=parse_datetime(author_json.get('birthday'))
+    alias=author_json.get('unique_id') or author_json.get('short_id')
+
+    if id:
+        return User(
+            id=id,
+            avatar_url=avatar_url,
+            is_verified=is_verified,
+            verify_info=verify_info,
+            is_hide_search=is_hide_search,
+            nikename=nikename,
+            region=region,
+            signature=signature,
+            gender=gender,
+            birthday=birthday,
+            alias=alias
+        )
+    else:
+        return None
+
 
 def parse_to_music(music_json):
     id=music_json.get('mid')
     title=music_json.get('title')
     play_url=get_music_url(music_json.get('play_url',{}).get('url_list',[]))
     owner_name=music_json.get('owner_nickname')
-    alunm = music_json.get('album')
+    album = music_json.get('album')
     owner_id=music_json.get('owner_id')
     duration=music_json.get('duration')
     cover_url=get_array_first(music_json.get('cover_large',{}).get('url_list'))
@@ -87,7 +122,7 @@ def parse_to_music(music_json):
             title=title,
             play_url=play_url,
             owner_name=owner_name,
-            alunm=alunm,
+            album=album,
             owner_id=owner_id,
             duration=duration,
             cover_url=cover_url
