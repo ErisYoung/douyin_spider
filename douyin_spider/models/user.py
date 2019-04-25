@@ -7,9 +7,9 @@ class User(ToJsonMixIn):
             setattr(self,key,key)
 
     def __repr__(self):
-        pass
+        return "<User<%s,%s>>" % (self.alias,self.name)
 
 if __name__ == '__main__':
-    user=User(a="1",b="2")
-    print(user.__dict__)
+    user=User(alias="xx",name="www")
+    print(user)
 

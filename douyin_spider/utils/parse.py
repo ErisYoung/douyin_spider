@@ -2,6 +2,7 @@ from douyin_spider.utils.common import parse_datetime,get_array_first
 from douyin_spider.models.video import Video
 from douyin_spider.models.music import Music
 from douyin_spider.models.user import User
+from douyin_spider.models.address import Address
 
 def get_video_url(video_list):
     if video_list and isinstance(video_list,list) and len(video_list)>1:
@@ -131,7 +132,35 @@ def parse_to_music(music_json):
         return None
 
 def parse_to_address(poi_info_json):
-    pass
+    if poi_info_json:
+        id=poi_info_json.get('poi_id')
+        longitude=poi_info_json.get('poi_longitude')
+        latitude=poi_info_json.get('poi_latitude')
+        name=poi_info_json.get('poi_name')
+
+        address_info=poi_info_json.get('address_info',{})
+        province=address_info.get('province') or None
+        city=address_info.get('city') or None
+        simple_addr=address_info.get('simple_addr') or None
+        district=address_info.get('district') or None
+        city_code=address_info.get('city_code') or None
+        sub_address=address_info.get('address') or None
+
+        if id:
+            return Address(
+                id=id,
+                longitude=longitude,
+                latitude=latitude,
+                name=name,
+                province=province,
+                city=city,
+                simple_addr=simple_addr,
+                district=district,
+                city_code=city_code,
+                sub_address=sub_address
+            )
+        else:
+            return None
 
 
 if __name__ == '__main__':
