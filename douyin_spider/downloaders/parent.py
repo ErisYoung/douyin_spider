@@ -96,7 +96,7 @@ class Downloader(object):
 
 
 if __name__ == '__main__':
-    with tqdm(total=100) as pbar:
+    with tqdm(total=100) as bar:
         for i in range(10):
             time.sleep(0.1)
-            pbar.update(10)
+            bar.update(10)
