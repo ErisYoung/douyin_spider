@@ -19,16 +19,16 @@ class MediaHandler(Handler):
             Path(folder_path).mkdir()
 
     async def process(self, item, **kwargs):
-        print("Downloading ", item, '...')
+        print("Downloading", item, '...')
         kwargs.update(GET_DICT_PARAMS)
         async with aiohttp.ClientSession() as session:
-            async with session.get(item.play_url, **kwargs) as res:
+            async with session.get(item.play_url,**kwargs) as res:
                 if res.status == 200:
                     extension = type_to_extension(res.headers.get('Content-Type'))
                     media_save_path = Path(self.folder).joinpath(f"{item.id}.{extension}")
                     with open(media_save_path, 'wb') as f:
                         f.write(await res.content.read())
-                        print("Download media to", media_save_path)
+                        print('success!',"Download media to", media_save_path)
                 else:
                     print(f"Cannot download {item.id},response status {res.status} ")
 

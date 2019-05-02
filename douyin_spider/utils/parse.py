@@ -5,12 +5,12 @@ from douyin_spider.models.user import User
 from douyin_spider.models.address import Address
 
 def get_video_url(video_list):
-    if video_list and isinstance(video_list,list) and len(video_list)>1:
-        return video_list[-1]
+    if video_list and isinstance(video_list,list):
+        return video_list[0]
     return None
 
 def get_music_url(music_list):
-    if music_list and isinstance(music_list,list) and len(music_list)>1:
+    if music_list and isinstance(music_list,list):
         return music_list[-1]
     return None
 
