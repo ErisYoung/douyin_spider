@@ -57,7 +57,8 @@ extension_to_type_mapping_dict = {
     'ods': 'application/vnd.oasis.opendocument.spreadsheet',
 }
 
-type_to_extension_mapping_dict={v:k for k,v in extension_to_type_mapping_dict.items()}
+type_to_extension_mapping_dict = {v: k for k, v in extension_to_type_mapping_dict.items()}
+
 
 def type_to_extension(type_name):
     if type_name in type_to_extension_mapping_dict.keys():
@@ -65,11 +66,9 @@ def type_to_extension(type_name):
     else:
         return ''
 
+
 def extension_to_type(extension_name):
     if extension_name in extension_to_type_mapping_dict.keys():
         return extension_to_type_mapping_dict[extension_name]
     else:
         return ''
-
-
-

@@ -21,7 +21,7 @@ def _get(url, **kwargs):
     kwargs.update({'verify': False, 'timeout': get_timeout})
     res = rq.get(url, **kwargs)
     if res.status_code != 200:
-        raise rq.ConnectionError("Expected status_code 200,but get {}".f)
+        raise rq.ConnectionError("Expected status_code 200,but get {}".format(res.status_code))
     return res.json()
 
 

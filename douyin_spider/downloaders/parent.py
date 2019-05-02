@@ -42,7 +42,7 @@ class Downloader(object):
         """
         self._handlers = handlers
 
-    def update_bars(self, _):
+    def update_bars(self):
         """
         update tqdm‘s bar
         :param size:
@@ -69,9 +69,9 @@ class Downloader(object):
             loop = asyncio.get_event_loop()
             base_step = int(math.ceil(items_size / self.batch))
             for i in range(base_step):
-                start,end=i * self.batch,(i + 1) * self.batch
+                start, end = i * self.batch, (i + 1) * self.batch
                 current_items = items[start:end]
-                print("Processing %d-%d of files" % (start+1,end))
+                print("Processing %d-%d of files" % (start + 1, end))
                 tasks = [asyncio.ensure_future(self.handle_one_item(current_item)) for current_item in current_items]
                 for task in tasks:
                     task.add_done_callback(self.update_bars)

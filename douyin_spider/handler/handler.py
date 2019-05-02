@@ -1,5 +1,4 @@
-
 class Handler(object):
 
-    def handle(self,item,**kwargs):
+    def handle(self, item, **kwargs):
         return NotImplementedError
