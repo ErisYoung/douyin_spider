@@ -32,8 +32,9 @@ def download_video_test(url):
 
 
 def parse_to_video(data):
+    id = data.get('aweme_id')
+    
     statistics = data.get('statistics', {})
-    id = statistics.get('aweme_id')
     like_count = statistics.get('digg_count')
     comment_count = statistics.get('comment_count')
     share_count = statistics.get('share_count')

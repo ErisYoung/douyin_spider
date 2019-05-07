@@ -21,7 +21,8 @@ class MongoHandler(Handler):
 
         collection = self.db[collection_name]
         print("Saving", item, 'to mongodb...')
-        if await collection.update_one({'id': item.id}, {'$set': item.json()}, upsert=True):
+        print(item.json())
+        if await collection.update_one({'id': item.id}, {'$set':item.json()}, upsert=True):
             print("Save success", item, 'to mongodb...')
         else:
             print("error save", item, 'to mongodb...')

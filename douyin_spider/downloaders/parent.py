@@ -42,7 +42,7 @@ class Downloader(object):
         """
         self._handlers = handlers
 
-    def update_bars(self):
+    def update_bars(self, _):
         """
         update tqdm‘s bar
         :param size:

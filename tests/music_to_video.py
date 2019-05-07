@@ -1,17 +1,17 @@
-from douyin_spider.downloaders.video import VideoDownloader
+from douyin_spider.enter.hot_music import hot_music
 from douyin_spider.handler.video import VideoHandler
 from douyin_spider.handler.music import MusicHandler
-from douyin_spider.handler.mongodb import MongoHandler
+from douyin_spider.downloaders.video import VideoDownloader
 from douyin_spider.enter.hot_top import hot_top20
 
 video_handler = VideoHandler(folder='./videos')
 music_handler = MusicHandler(folder='./musics')
-mongo_handler = MongoHandler()
 downloader = VideoDownloader([video_handler])
 
-result = hot_top20()
+results = hot_music()
 
-for item in result.data[0:2]:
-    downloader.download(item)
+results2=hot_top20()
 
-print("success")
+for music in results.data:
+    downloader.download(music.videos(max=10))
+    break

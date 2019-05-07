@@ -14,27 +14,21 @@ class ToJsonMixIn(object):
                 dict_attrs[k] = "None"
             if isinstance(v, (Video, Music, Address, User)):
                 dict_attrs[k] = v.json()
-            if isinstance(v, datetime.datetime):
+            elif isinstance(v, datetime.datetime):
                 dict_attrs[k] = str(v)
-            if isinstance(v, str):
+            elif isinstance(v, str):
                 dict_attrs[k] = v
-            dict_attrs[k] = v
+            else:
+                dict_attrs[k] = v
 
         return dict_attrs
 
 
-class Test(ToJsonMixIn):
-    def __init__(self, a, b):
-        from douyin_spider.models.video import Video
-        self.a = 10
-        self.b = 20
-        self.data = datetime.datetime.now()
-        self.video = Video()
-
-
 if __name__ == '__main__':
-    import datetime
+    from douyin_spider.models.video import Video
+    from douyin_spider.models.music import Music
 
-    test = Test(exec("a=2"), exec("b=20"))
-    result = test.json()
-    print(result)
+    video = Video(id='11', play_url='cc.com')
+    music = Music(id='22', play_url='dd.com')
+    video.music = music
+    print(video.json())
