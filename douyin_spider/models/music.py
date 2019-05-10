@@ -2,7 +2,7 @@ from douyin_spider.models.JsonMixIn import ToJsonMixIn
 from douyin_spider.utils.get import get
 from douyin_spider.utils.decryption.signture import generate_signature
 
-share_music_set_base_url = "https://www.iesdouyin.com/web/api/v2/music/list/aweme/"
+share_music_base_url = "https://www.iesdouyin.com/web/api/v2/music/list/aweme/"
 
 HEADERS = {
     'accept-encoding': 'gzip, deflate, br',
@@ -12,6 +12,7 @@ HEADERS = {
     'upgrade-insecure-requests': '1',
     'user-agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
 }
+
 
 class Music(ToJsonMixIn):
     def __init__(self, **kwargs):
@@ -50,7 +51,7 @@ class Music(ToJsonMixIn):
                 # music_video_params['_signature'] = generate_signature(
                 #     str(self.id) + '9' + str(cursor))
 
-            result = get(share_music_set_base_url, params=music_video_params, headers=HEADERS)
+            result = get(share_music_base_url, params=music_video_params, headers=HEADERS)
             aweme_list = result.get('aweme_list', [])
             for item in aweme_list:
                 count += 1
@@ -65,5 +66,5 @@ class Music(ToJsonMixIn):
                 break
 
         if count == 0:
-            print("There is no video in this music %s" % self.id)
-        print(f"video_count:{count}")
+            print(f"There is no video in this music {self.id}")
+        print(f"video count:{count}")

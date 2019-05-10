@@ -1,10 +1,12 @@
 import datetime
+import re
 from datetime import timedelta, time, date
 import dateparser
 import requests as rq
 
 birthday_sep = '-'
 headers = {'User-Agent': 'Aweme 5.5.0 rv:55011 (iPhone; iOS 11.3.1; zh_CN) Cronet'}
+dytk_base_url = "https://www.iesdouyin.com/share/user/{user_id}?utm_campaign=client_share&app=aweme&utm_medium=ios&tt_from=copy&utm_source=copy&iid=67030863950"
 
 
 def set_class_attr(self, data):
@@ -48,11 +50,20 @@ def get_current_timestamp():
 
 def get_real_url(url):
     if isinstance(url, str):
-        res = rq.get(url,headers=headers)
+        res = rq.get(url, headers=headers)
         return res.url
 
 
+def get_user_dytk_by_id(user_id):
+    url = dytk_base_url.format(user_id=user_id)
+    res = rq.get(url, headers=headers)
+    if res and res.status_code == 200:
+        dytk = re.findall(r"dytk: '(.*)'", res.content.decode("utf_8"))
+        return get_array_first(dytk)
+
+
 if __name__ == '__main__':
-    date_obj = parse_datetime("1556965518")
+    date_obj = parse_datetime("5月9日 15:00")
     print(date_obj)
     print(get_current_timestamp())
+    print(get_user_dytk_by_id("56630472225"))

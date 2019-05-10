@@ -1,2 +1,8 @@
 # douyin_spider
-抖音爬虫。
+
+Crawler of DouYin App
+
+
+
+
+

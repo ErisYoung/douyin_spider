@@ -10,8 +10,6 @@ downloader = VideoDownloader([video_handler])
 
 results = hot_music()
 
-results2=hot_top20()
-
 for music in results.data:
     downloader.download(music.videos(max=10))
     break

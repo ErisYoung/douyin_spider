@@ -15,3 +15,5 @@ class MusicHandler(MediaHandler):
             item = item.music
             if isinstance(item, Music):
                 return await self.process(item, **kwargs)
+            else:
+                return None

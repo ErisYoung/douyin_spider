@@ -1,7 +1,7 @@
 from douyin_spider.utils.common import parse_datetime, get_array_first
 from douyin_spider.models.video import Video
 from douyin_spider.models.music import Music
-from douyin_spider.models.user import User
+from douyin_spider.models.user import User, Star
 from douyin_spider.models.address import Address
 
 
@@ -33,7 +33,7 @@ def download_video_test(url):
 
 def parse_to_video(data):
     id = data.get('aweme_id')
-    
+
     statistics = data.get('statistics', {})
     like_count = statistics.get('digg_count')
     comment_count = statistics.get('comment_count')
@@ -88,7 +88,7 @@ def parse_to_user(author_json):
     is_verified = author_json.get('is_verified')
     verify_info = author_json.get('custom_verify')
     is_hide_search = author_json.get('hide_search')
-    nikename = author_json.get('nickname')
+    nickname = author_json.get('nickname')
     region = author_json.get('CN')
     signature = author_json.get('signature')
     gender = parse_gender(author_json.get('gender'))
@@ -102,12 +102,33 @@ def parse_to_user(author_json):
             is_verified=is_verified,
             verify_info=verify_info,
             is_hide_search=is_hide_search,
-            nikename=nikename,
+            nickname=nickname,
             region=region,
             signature=signature,
             gender=gender,
             birthday=birthday,
             alias=alias
+        )
+    else:
+        return None
+
+
+def parse_to_star(star_json):
+    user_info = star_json.get('user_info', {})
+    id = user_info.get('uid')
+    nickname = user_info.get('nickname')
+    signature = user_info.get('signature')
+    avatar_url = get_array_first(user_info.get('avatar_larger', {}).get('url_list', []))
+    factor_hot_value = star_json.get('factor_hot_value')
+    hot_value = star_json.get('hot_value')
+    if id:
+        return Star(
+            id=id,
+            nickname=nickname,
+            signature=signature,
+            avatar_url=avatar_url,
+            factor_hot_value=factor_hot_value,
+            hot_value=hot_value
         )
     else:
         return None

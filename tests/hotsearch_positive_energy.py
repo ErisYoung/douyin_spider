@@ -1,15 +1,16 @@
+from douyin_spider.downloaders.video import VideoDownloader
+from douyin_spider.handler.video import VideoHandler
+from douyin_spider.handler.music import MusicHandler
+from douyin_spider.handler.mongodb import MongoHandler
+from douyin_spider.enter.hot_positive_energy import hot_pe_top20
+video_handler = VideoHandler(folder='./videos')
+music_handler = MusicHandler(folder='./musics')
+mongo_handler = MongoHandler()
+downloader = VideoDownloader([video_handler])
 
-def func():
-    a=4
-    while True:
+result = hot_pe_top20()
 
-        for i in range(5):
-            print(i)
-            a -= 1
-            if a==1:
-                return
-            yield a
+for item in result.data[0:2]:
+    downloader.download(item)
 
-if __name__ == '__main__':
-    list_c=func()
-    print(list(list_c))
+print("success")
