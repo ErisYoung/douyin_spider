@@ -1,6 +1,9 @@
+import logging
 import requests as rq
 from retrying import retry
 # 禁用安全请求警告
+
+logging.captureWarnings(True)
 
 get_timeout = 5
 retry_max_number = 10
@@ -34,3 +37,4 @@ def get(url, **kwargs):
 
 if __name__ == '__main__':
     pass
+

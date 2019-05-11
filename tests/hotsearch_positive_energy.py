@@ -10,7 +10,6 @@ downloader = VideoDownloader([video_handler])
 
 result = hot_pe_top20()
 
-for item in result.data[0:2]:
-    downloader.download(item)
+downloader.download(result.data)
 
 print("success")
