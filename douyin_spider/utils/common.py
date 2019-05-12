@@ -7,6 +7,14 @@ import requests as rq
 birthday_sep = '-'
 headers = {'User-Agent': 'Aweme 5.5.0 rv:55011 (iPhone; iOS 11.3.1; zh_CN) Cronet'}
 dytk_base_url = "https://www.iesdouyin.com/share/user/{user_id}?utm_campaign=client_share&app=aweme&utm_medium=ios&tt_from=copy&utm_source=copy&iid=67030863950"
+HEADERS = {
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'zh-CN,zh;q=0.9',
+    'pragma': 'no-cache',
+    'cache-control': 'no-cache',
+    'upgrade-insecure-requests': '1',
+    'user-agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+}
 
 
 def set_class_attr(self, data):
@@ -52,6 +60,12 @@ def get_real_url(url):
     if isinstance(url, str):
         res = rq.get(url, headers=headers)
         return res.url
+
+
+def get_real_address_from_short(url):
+    if isinstance(url, str):
+        res = rq.get(url, headers=HEADERS, allow_redirects=False)
+        return res.headers['Location'] if res.status_code == 302 else None
 
 
 def get_user_dytk_by_id(user_id):

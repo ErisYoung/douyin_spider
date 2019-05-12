@@ -1,13 +1,13 @@
-# 抖音爬虫
+# douyin_spider
 
-抓取抖音App的视频爬虫
+Crawler of DouYin App
 
-## 环境
+## Environment
 
 > Python3
 
-## 安装配置
-首先，你需要安装并配置好**Node.js**环境,然后bash运行
+## Installation
+First of all,you need install and configure **Node.js**
 
 ```bash
 $ git clone git@github.com:ErisYoung/douyin_spider.git
@@ -15,11 +15,11 @@ $ cd douyin_spider
 $ pip install -r requirements.txt
 ```
 
-## 使用方法
+## Usage
 
-####第一种方式:选择下载器和处理器,自行编写
+####The first approach:choose downloader and handler to download what you want 
 
-你可以按如下方式使用:
+And you can use like:
 
 ```python
 from douyin_spider.downloaders.video import VideoDownloader
@@ -31,7 +31,7 @@ from douyin_spider.enter.hot_top import hot_top20
 video_handler = VideoHandler(folder='./videos')
 music_handler = MusicHandler(folder='./musics')
 mongo_handler = MongoHandler()
-downloader = VideoDownloader([video_handler,music_handler,mongo_handler])
+downloader = VideoDownloader([video_handler])
 
 result = hot_top20()
 
@@ -41,52 +41,49 @@ for item in result.data:
 print("success")
 
 ```
+💨note:if you use mongo_handler to save data,you should have one and start it
 
-💨注意:如果要使用mongo_handler,则需要提前启动mongodb
-
-结果:
+Result:
 
 ![4.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yux5fnxzj30wp0e078x.jpg)
 ![5.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yux5kulnj319x09uwmp.jpg)
 ![6.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yux4gxauj319k09ldg6.jpg)
 ![7.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yux4i58yj312b0e8ju0.jpg)
 
-
-####第二种方式:使用命令行参数
-首先获取你所需要的share-url
+####The second approach:use command-line arguments
+first,you should get share_url you want
 
 ![1.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhcwjxij30ku112qns.jpg)
 ![2.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhansloj30ku112jt2.jpg)
 ![3.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhb3f0vj30ku112jv8.jpg)
 
 
-然后把得到的url,输入命令行，默认下载10个视频
+and put the url as the input parameters,default download 10 videos
 ```bash
 cd douyin_spider/tests
 python assign_share_url.py -u "http://v.douyin.com/6Gf7FG/" 
 
 ```
-💨注意:这里要使用"",否则Windows环境下会出现error
+💨note:you should use "" to package the url,or it will report errors in Windows
 
-更多的参数使用自行help查阅:
+please use --help to get more parameters:
 ```bash
 python assign_share_url.py --help
 ```
 
-#####💨提示:有其他问题可以自行issue
+#####💨note:if you have another question,you can issue it
 
-## 更多的例子和入口
+## More examples
 
-请看 [tests](tests)
+See [tests](tests)
 
-## 更多的下载器
+## More Downloader
 
-请看 [downloaders](douyin_spider/downloaders)
+See [downloaders](douyin_spider/downloaders)
 
-## 更多的处理器
+## More Handler
 
-请看 [handler](douyin_spider/handler)
-
+See [handler](douyin_spider/handler)
 
 
 

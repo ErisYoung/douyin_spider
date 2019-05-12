@@ -1,8 +1,13 @@
+""" In this module ,you can download videos from music
+
+You can choose how many you want,and what media you want download and store.
+
+"""
+
 from douyin_spider.enter.hot_music import hot_music
 from douyin_spider.handler.video import VideoHandler
 from douyin_spider.handler.music import MusicHandler
 from douyin_spider.downloaders.video import VideoDownloader
-from douyin_spider.enter.hot_top import hot_top20
 
 video_handler = VideoHandler(folder='./videos')
 music_handler = MusicHandler(folder='./musics')

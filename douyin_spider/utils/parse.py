@@ -17,6 +17,10 @@ def get_music_url(music_list):
     return None
 
 
+def get_cover_url(video_json):
+    return video_json.get('origin_cover') or video_json.get('cover')
+
+
 def parse_gender(gender_codeName_str):
     dict_gender_mapping = {'0': 'male', '1': 'female', '2': "unknown"}
     if isinstance(gender_codeName_str, str):
@@ -49,7 +53,7 @@ def parse_to_video(data):
 
     video = data.get('video', {})
     ratio = video.get('ratio')
-    cover_url = get_array_first(video.get('origin_cover').get('url_list', []))
+    cover_url = get_array_first(get_cover_url(video).get('url_list', []))
     play_url = get_video_url(video.get('play_addr', {}).get('url_list', []))
     duration = data.get('duration')
 

@@ -17,8 +17,10 @@ HEADERS = {
 class BasicUser(object):
     def __init__(self, **kwargs):
         self.id = None
+        self.nickname = None
 
     def videos(self, max=None):
+        print(f"<{type(self).__name__}<{self.nickname},{self.id}>>")
         if not isinstance(max, int):
             raise RuntimeError("`max` param must be int")
         if max <= 0:

@@ -1,6 +1,7 @@
 import logging
 import requests as rq
 from retrying import retry
+
 # 禁用安全请求警告
 
 logging.captureWarnings(True)
@@ -35,6 +36,6 @@ def get(url, **kwargs):
         result = {}
     return result
 
+
 if __name__ == '__main__':
     pass
-
