@@ -53,10 +53,11 @@ Result:
 ####The second approach:use command-line arguments
 first,you should get share_url you want
 
-![1.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhcwjxij30ku112qns.jpg)
-![2.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhansloj30ku112jt2.jpg)
-![3.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhb3f0vj30ku112jv8.jpg)
-
+<p align="center">
+<img src="https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhcwjxij30ku112qns.jpg" width="160">
+<img src="https://ws3.sinaimg.cn/large/005BYqpggy1g2yuhansloj30ku112jt2.jpg" width="160">
+<img src="ttps://ws3.sinaimg.cn/large/005BYqpggy1g2yuhb3f0vj30ku112jv8.jpg" width="160">
+</p>
 
 and put the url as the input parameters,default download 10 videos
 ```bash
