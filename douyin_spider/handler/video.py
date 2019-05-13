@@ -3,7 +3,9 @@ from douyin_spider.models.video import Video
 
 
 class VideoHandler(MediaHandler):
-
+    """
+    video handler,handle video item
+    """
     async def handle(self, item, **kwargs):
         """
         handle item use VideoHandler

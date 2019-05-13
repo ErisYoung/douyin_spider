@@ -15,11 +15,20 @@ HEADERS = {
 
 
 class BasicUser(object):
+    """
+    User super class
+    """
+
     def __init__(self, **kwargs):
         self.id = None
         self.nickname = None
 
     def videos(self, max=None):
+        """
+        videos belongs to challenge
+        :param max:videos number need
+        :return:videos generator
+        """
         print(f"<{type(self).__name__}<{self.nickname},{self.id}>>")
         if not isinstance(max, int):
             raise RuntimeError("`max` param must be int")
@@ -58,6 +67,15 @@ class BasicUser(object):
 
 
 class User(BasicUser, ToJsonMixIn):
+    """
+    User model
+
+    Main public parameters:
+    - id: user id
+    - nickname: user's nickname
+    - ...
+    """
+
     def __init__(self, **kwargs):
         super().__init__()
         self.id = kwargs.get('id')
@@ -76,6 +94,16 @@ class User(BasicUser, ToJsonMixIn):
 
 
 class Star(BasicUser, ToJsonMixIn):
+    """
+    Star model
+
+    Main public parameters:
+    - id: user id
+    - nickname: star's nickname
+    - hot_value: star's hot_value of searching
+    - ...
+    """
+
     def __init__(self, **kwargs):
         super().__init__()
         self.id = kwargs.get('id')

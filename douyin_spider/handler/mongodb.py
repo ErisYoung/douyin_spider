@@ -5,14 +5,28 @@ from douyin_spider.models.music import Music
 
 
 class MongoHandler(Handler):
+    """
+    mongodb handler,save data to local mongodb with asyncIO mongodb
+    """
 
     def __init__(self, con_uri=None, db_name="douyin"):
+        """
+        init function,you can also enter one mongodb connect_uri
+        :param con_uri:
+        :param db_name: default name "douyin"
+        """
         super().__init__()
         self.con_uri = con_uri or 'localhost'
         self.client = AsyncIOMotorClient(self.con_uri)
         self.db = self.client[db_name]
 
     async def handle(self, item, **kwargs):
+        """
+        save item  to mongodb,insert if item not exists,otherwise update
+        :param item:
+        :param kwargs:
+        :return:
+        """
         collection_name = "default"
         if isinstance(item, Video):
             collection_name = "videos"
@@ -21,7 +35,7 @@ class MongoHandler(Handler):
 
         collection = self.db[collection_name]
         print("Saving", item, 'to mongodb...')
-        if await collection.update_one({'id': item.id}, {'$set':item.json()}, upsert=True):
+        if await collection.update_one({'id': item.id}, {'$set': item.json()}, upsert=True):
             print("Save success", item, 'to mongodb...')
         else:
             print("error save", item, 'to mongodb...')

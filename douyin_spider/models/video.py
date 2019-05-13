@@ -2,6 +2,18 @@ from douyin_spider.models.JsonMixIn import ToJsonMixIn
 
 
 class Video(ToJsonMixIn):
+    """
+    Video model
+
+    Main public parameters:
+    - id: video id,unique
+    - play_url: video url
+    - music: music of the video use
+    - address: address of the video
+    - ...
+    - author: author of the video
+    """
+
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.like_count = kwargs.get('like_count')
@@ -26,13 +38,6 @@ class Video(ToJsonMixIn):
         return "<Video<%s,%s>>" % (self.id, self.desc[:50].strip() if self.desc else None)
 
 
-class Test():
-    def __init__(self, test):
-        for i in test:
-            setattr(self, i, i)
-
-
 if __name__ == '__main__':
-    test = ['a', 'b', 'c']
-    te = Test(test)
-    print(te.__dict__)
+    video=Video(id="123134")
+    print(video)

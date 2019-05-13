@@ -4,8 +4,16 @@ from douyin_spider.handler.handler import Handler
 
 
 class VideoDownloader(Downloader):
+    """
+    Video downloader for items
+    """
 
     async def handle_one_item(self, item):
+        """
+        handle one item by traversing all handlers
+        :param item:
+        :return: 
+        """
         if isinstance(item, Video):
             print("Processing", item)
             for handler in self.handlers:

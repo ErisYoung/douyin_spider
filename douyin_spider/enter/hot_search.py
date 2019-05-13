@@ -1,12 +1,14 @@
 from douyin_spider.models.collection_model import HotSearch
 from douyin_spider.utils.get import get
 from douyin_spider.utils.common import parse_datetime
-
-headers = {'User-Agent': 'Aweme 5.5.0 rv:55011 (iPhone; iOS 11.3.1; zh_CN) Cronet'}
-hot_search_url = 'https://api.amemv.com/aweme/v1/hot/search/list/'
+from douyin_spider.config import headers, hot_search_url
 
 
 def hot_search():
+    """
+    get 20 of the most popular searching videos in billboard
+    :return:HotSearch
+    """
     result = get(hot_search_url, headers=headers)
     data = result.get('data', {})
     date_time = parse_datetime(data.get('active_time'))

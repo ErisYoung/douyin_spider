@@ -2,6 +2,14 @@ from douyin_spider.models.JsonMixIn import ToJsonMixIn
 
 
 class Address(ToJsonMixIn):
+    """
+    Address model
+
+    Main public attributes:
+    - id: address id,unique
+    - simple_addr: detailed address
+    - ...
+    """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.longitude = kwargs.get('longitude')

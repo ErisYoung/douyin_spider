@@ -1,3 +1,6 @@
+"""In the module, transform item'tyoe with extension
+
+"""
 extension_to_type_mapping_dict = {
     'txt': 'text/plain',
     'htm': 'text/html',
@@ -61,6 +64,11 @@ type_to_extension_mapping_dict = {v: k for k, v in extension_to_type_mapping_dic
 
 
 def type_to_extension(type_name):
+    """
+    change type to extension
+    :param type_name:type name
+    :return:extension
+    """
     if type_name in type_to_extension_mapping_dict.keys():
         return type_to_extension_mapping_dict[type_name]
     else:
@@ -68,6 +76,11 @@ def type_to_extension(type_name):
 
 
 def extension_to_type(extension_name):
+    """
+    change extension to type
+    :param extension_name:extension name
+    :return:type
+    """
     if extension_name in extension_to_type_mapping_dict.keys():
         return extension_to_type_mapping_dict[extension_name]
     else:

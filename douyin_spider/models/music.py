@@ -15,6 +15,15 @@ HEADERS = {
 
 
 class Music(ToJsonMixIn):
+    """
+    Music model
+
+    Main public attributes:
+    - id: address id,unique
+    - play_url: music url
+    - cover_url: cover url
+    - ...
+    """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.title = kwargs.get('title')
@@ -29,6 +38,11 @@ class Music(ToJsonMixIn):
         return "<Music<%s,%s>>" % (self.id, self.title[:50].strip() if self.title else None)
 
     def videos(self, max=None):
+        """
+        videos belongs to challenge
+        :param max:videos number need
+        :return:videos generator
+        """
         if not isinstance(max, int):
             raise RuntimeError("`max` param must be int")
         if max <= 0:

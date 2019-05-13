@@ -6,28 +6,53 @@ from douyin_spider.models.address import Address
 
 
 def get_video_url(video_list):
+    """
+    parse video url from video_list
+    :param video_list:
+    :return:
+    """
     if video_list and isinstance(video_list, list):
         return video_list[0]
     return None
 
 
 def get_music_url(music_list):
+    """
+    parse music url from music_list
+    :param music_list:
+    :return:
+    """
     if music_list and isinstance(music_list, list):
         return music_list[-1]
     return None
 
 
 def get_cover_url(video_json):
+    """
+    parse cover url from video_json
+    :param video_json:
+    :return:
+    """
     return video_json.get('origin_cover') or video_json.get('cover')
 
 
 def parse_gender(gender_codeName_str):
+    """
+    parse user gender
+    :param gender_codeName_str:
+    :return:
+    """
     dict_gender_mapping = {'0': 'male', '1': 'female', '2': "unknown"}
     if isinstance(gender_codeName_str, str):
         return dict_gender_mapping[gender_codeName_str]
 
 
 def download_video_test(url):
+    """
+    download test with headers
+    :param url:
+    :return:
+    """
     import requests
     headers = {'User-Agent': 'Aweme 5.5.0 rv:55011 (iPhone; iOS 11.3.1; zh_CN) Cronet'}
     res = requests.get(url, headers=headers)
@@ -36,6 +61,11 @@ def download_video_test(url):
 
 
 def parse_to_video(data):
+    """
+    parse json to Video
+    :param data:
+    :return: Video
+    """
     id = data.get('aweme_id')
 
     statistics = data.get('statistics', {})
@@ -87,6 +117,11 @@ def parse_to_video(data):
 
 
 def parse_to_user(author_json):
+    """
+    parse json to User
+    :param author_json:
+    :return: User
+    """
     id = author_json.get('mid')
     avatar_url = get_array_first(author_json.get('avatar_larger', {}).get('url_list'))
     is_verified = author_json.get('is_verified')
@@ -118,6 +153,11 @@ def parse_to_user(author_json):
 
 
 def parse_to_star(star_json):
+    """
+    parse json to Star
+    :param star_json:
+    :return:Star
+    """
     user_info = star_json.get('user_info', {})
     id = user_info.get('uid')
     nickname = user_info.get('nickname')
@@ -139,6 +179,11 @@ def parse_to_star(star_json):
 
 
 def parse_to_music(music_json):
+    """
+    parse json to Music
+    :param music_json:
+    :return: Music
+    """
     id = music_json.get('mid')
     title = music_json.get('title')
     play_url = get_music_url(music_json.get('play_url', {}).get('url_list', []))
@@ -164,6 +209,11 @@ def parse_to_music(music_json):
 
 
 def parse_to_address(poi_info_json):
+    """
+    parse json to Address
+    :param poi_info_json:
+    :return: Address
+    """
     if poi_info_json:
         id = poi_info_json.get('poi_id')
         longitude = poi_info_json.get('poi_longitude')

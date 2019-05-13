@@ -15,6 +15,14 @@ HEADERS = {
 
 
 class Challenge(ToJsonMixIn):
+    """
+    Challenge model
+
+    Main public attributes:
+    - id: address id,unique
+    - name: challenge name
+    - ...
+    """
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.name = kwargs.get("name")
@@ -23,6 +31,11 @@ class Challenge(ToJsonMixIn):
         return "<Challenge<%s,%s>>" % (self.id, self.name)
 
     def videos(self, max=None):
+        """
+        videos belongs to challenge
+        :param max:videos number need
+        :return:videos generator
+        """
         print(f"<{type(self).__name__}<{self.name},{self.id}>>")
         if not isinstance(max, int):
             raise RuntimeError("`max` param must be int")

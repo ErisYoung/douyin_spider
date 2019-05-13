@@ -2,12 +2,16 @@ import math
 import types
 import asyncio
 import time
-from tqdm import tqdm, trange
-
-INIT_DOWNLOADER_BATCH_SIZE = 10
+from tqdm import tqdm
+from douyin_spider.config import INIT_DOWNLOADER_BATCH_SIZE
 
 
 class Downloader(object):
+    """
+    Base Downloader for items
+
+    """
+
     def __init__(self, handlers=None, batch_size=INIT_DOWNLOADER_BATCH_SIZE):
         """
         init downloadr
