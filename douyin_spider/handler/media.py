@@ -4,10 +4,7 @@ from pathlib import Path
 from douyin_spider.handler.handler import Handler
 from douyin_spider.utils.extension import type_to_extension
 from douyin_spider.utils.common import get_real_url
-
-GET_DICT_PARAMS = {'timeout': 50}
-REDIRECT_URL_HEAD = "https://aweme.snssdk.com/aweme"
-headers = {'User-Agent': 'Aweme 5.5.0 rv:55011 (iPhone; iOS 11.3.1; zh_CN) Cronet'}
+from douyin_spider.config import GET_DICT_PARAMS, REDIRECT_URL_HEAD, headers
 
 
 class MediaHandler(Handler):

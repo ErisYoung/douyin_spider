@@ -1,14 +1,10 @@
 import logging
 import requests as rq
 from retrying import retry
+from douyin_spider.config import get_timeout, retry_max_random_wait, retry_min_random_wait, retry_max_number
 
 # disable the security warning
 logging.captureWarnings(True)
-
-get_timeout = 5
-retry_max_number = 10
-retry_min_random_wait = 1000
-retry_max_random_wait = 5000
 
 
 def retry_exception_func(exception):

@@ -8,18 +8,7 @@ import re
 from datetime import timedelta, time, date
 import dateparser
 import requests as rq
-
-birthday_sep = '-'
-headers = {'User-Agent': 'Aweme 5.5.0 rv:55011 (iPhone; iOS 11.3.1; zh_CN) Cronet'}
-dytk_base_url = "https://www.iesdouyin.com/share/user/{user_id}?utm_campaign=client_share&app=aweme&utm_medium=ios&tt_from=copy&utm_source=copy&iid=67030863950"
-HEADERS = {
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'pragma': 'no-cache',
-    'cache-control': 'no-cache',
-    'upgrade-insecure-requests': '1',
-    'user-agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-}
+from douyin_spider.config import birthday_sep, headers, dytk_base_url, HEADERS
 
 
 def set_class_attr(self, data):

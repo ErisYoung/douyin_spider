@@ -1,17 +1,7 @@
 from douyin_spider.models.JsonMixIn import ToJsonMixIn
 from douyin_spider.utils.get import get
 from douyin_spider.utils.decryption.signture import generate_signature
-
-share_music_base_url = "https://www.iesdouyin.com/web/api/v2/music/list/aweme/"
-
-HEADERS = {
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'pragma': 'no-cache',
-    'cache-control': 'no-cache',
-    'upgrade-insecure-requests': '1',
-    'user-agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-}
+from douyin_spider.config import share_music_base_url, HEADERS
 
 
 class Music(ToJsonMixIn):
@@ -24,6 +14,7 @@ class Music(ToJsonMixIn):
     - cover_url: cover url
     - ...
     """
+
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.title = kwargs.get('title')
