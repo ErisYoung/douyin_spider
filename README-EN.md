@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 
 ## Usage
 
-####The first approach:choose downloader and handler to download what you want 
+#### The first approach:choose downloader and handler to download what you want 
 
 And you can use like:
 
@@ -50,7 +50,7 @@ Result:
 ![6.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yux4gxauj319k09ldg6.jpg)
 ![7.jpg](https://ws3.sinaimg.cn/large/005BYqpggy1g2yux4i58yj312b0e8ju0.jpg)
 
-####The second approach:use command-line arguments
+#### The second approach:use command-line arguments
 first,you should get share_url you want
 
 <p align="center">
@@ -72,7 +72,7 @@ please use --help to get more parameters:
 python assign_share_url.py --help
 ```
 
-#####💨note:if you have another question,you can issue it
+##### 💨note:if you have another question,you can issue it
 
 ## More examples
 
