@@ -89,6 +89,10 @@ python assign_share_url.py --help
 
 请看 [handler](douyin_spider/handler)
 
+#### 更新时间
+
+2019-5-13: 👌处理_signature 签名参数,实测可行
+
 
 
 

@@ -86,6 +86,10 @@ See [downloaders](douyin_spider/downloaders)
 
 See [handler](douyin_spider/handler)
 
+#### Update
+
+2019-5-13: 👌deal with "_signature" signature param, and it works
+
 
 
 
