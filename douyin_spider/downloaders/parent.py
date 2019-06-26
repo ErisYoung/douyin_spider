@@ -100,10 +100,3 @@ class Downloader(object):
             self.handle_items(input_items)
         else:
             self.handle_items([input_items])
-
-
-if __name__ == '__main__':
-    with tqdm(total=100) as bar:
-        for i in range(10):
-            time.sleep(0.1)
-            bar.update(10)

@@ -14,6 +14,11 @@ $ git clone git@github.com:ErisYoung/douyin_spider.git
 $ cd douyin_spider
 $ pip install -r requirements.txt
 ```
+or 
+
+```bash
+pip install douyin-spider
+```
 
 ## Usage
 
@@ -88,8 +93,8 @@ See [handler](douyin_spider/handler)
 
 #### Update
 
-2019-5-13: 👌deal with "_signature" signature param, and it works
-
+* 2019-5-13: 👌deal with "_signature" signature param, and it works
+* 2019-6-26: 👌pack project to pypi.org, and encryption'API is unchanged,and still works
 
 
 
