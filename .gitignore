@@ -3,6 +3,8 @@
 *.mp3
 *.avi
 __pycache__/
+videos/
+musics/
 
 # Distribution / packaging
 .Python

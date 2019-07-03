@@ -70,7 +70,7 @@ print("success")
 
 然后把得到的url,输入命令行，默认下载10个视频
 ```bash
-cd douyin_spider/tests
+cd douyin_spider/douyin_spider
 python assign_share_url.py -u "http://v.douyin.com/6Gf7FG/" 
 
 ```

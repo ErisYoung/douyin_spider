@@ -15,10 +15,12 @@ def generate_signature(value):
     :param value:share_url id
     :return:signature string
     """
-    p = os.popen('node signture.js %s' % value)
+    cwd = os.path.dirname(__file__)
+    p = os.popen('cd %s && node signture.js %s' % (cwd, value))
     return p.readlines()[0]
 
 
 if __name__ == '__main__':
     result = generate_signature('75984155221')
+    print(os.getcwd())
     print(result)
